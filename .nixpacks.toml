@@ -9,3 +9,7 @@ cmds = ["npm run build"]
 
 [start]
 cmd = "npm run preview"
+
+[variables]
+NODE_VERSION = "22.12.0"
+NIXPACKS_NODE_VERSION = "22.12.0"

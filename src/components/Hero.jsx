@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ArrowRight,
   Code,
@@ -7,9 +7,38 @@ import {
   MessageCircle,
   Sparkles,
   Zap,
+  Terminal,
+  Cpu,
+  Database,
+  GitBranch,
+  Code2,
+  Rocket,
+  Brain,
+  Target,
+  TrendingUp,
 } from "lucide-react";
 
 const Hero = () => {
+  const [currentText, setCurrentText] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const techRoles = [
+    "Full-Stack Developer",
+    "Tech Mentor",
+    "Code Architect",
+    "System Designer",
+    "DevOps Engineer",
+    "AI Enthusiast",
+  ];
+
+  useEffect(() => {
+    setIsVisible(true);
+    const interval = setInterval(() => {
+      setCurrentText((prev) => (prev + 1) % techRoles.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToContact = () => {
     const element = document.getElementById("contact");
     if (element) {
@@ -22,28 +51,38 @@ const Hero = () => {
       <div className="hero-background">
         <div className="hero-gradient"></div>
         <div className="hero-particles"></div>
+        <div className="hero-grid"></div>
+        <div className="hero-code-lines"></div>
       </div>
 
       <div className="container">
         <div className="hero-content">
           <div className="hero-text">
             <div className="hero-badge">
-              <Sparkles size={16} />
-              <span>Level Up Your Career</span>
+              <Terminal size={16} />
+              <span>sudo apt-get install success</span>
             </div>
 
             <h1 className="hero-title">
-              Hey there! 👋
+              <span className="hero-greeting">Hello, World!</span>
               <br />
-              I'm <span className="gradient-text">Sumukh</span>
+              <span className="hero-name">
+                I'm <span className="gradient-text">Sumukh</span>
+              </span>
               <br />
-              Your <span className="neon-text">Tech Mentor</span>
+              <div className="typing-container">
+                <span className="typing-text">{techRoles[currentText]}</span>
+                <span className="typing-cursor">|</span>
+              </div>
             </h1>
 
             <p className="hero-description">
-              Ready to break into tech? I help developers and students land
-              their dream jobs, master new skills, and build amazing projects.
-              Let's make it happen! 🚀
+              Transforming code into careers, debugging dreams into reality. I
+              architect digital solutions and mentor the next generation of
+              developers. Ready to level up your tech game?
+              <span className="highlight">
+                Let's build something amazing together.
+              </span>
             </p>
 
             <div className="hero-buttons">
@@ -51,8 +90,8 @@ const Hero = () => {
                 className="btn btn-primary btn-large"
                 onClick={scrollToContact}
               >
-                <Zap size={20} />
-                Let's Get Started
+                <Rocket size={20} />
+                <span>Initialize Project</span>
                 <ArrowRight size={20} />
               </button>
               <button
@@ -63,55 +102,96 @@ const Hero = () => {
                     .scrollIntoView({ behavior: "smooth" })
                 }
               >
-                Check Out My Services
+                <Code2 size={20} />
+                View Services
               </button>
             </div>
 
             <div className="hero-stats">
               <div className="stat">
-                <span className="stat-number">500+</span>
-                <span className="stat-label">Students Helped</span>
+                <div className="stat-icon">
+                  <Users size={24} />
+                </div>
+                <div className="stat-content">
+                  <span className="stat-number">500+</span>
+                  <span className="stat-label">Developers Mentored</span>
+                </div>
               </div>
               <div className="stat">
-                <span className="stat-number">95%</span>
-                <span className="stat-label">Success Rate</span>
+                <div className="stat-icon">
+                  <Target size={24} />
+                </div>
+                <div className="stat-content">
+                  <span className="stat-number">95%</span>
+                  <span className="stat-label">Success Rate</span>
+                </div>
               </div>
               <div className="stat">
-                <span className="stat-number">8+</span>
-                <span className="stat-label">Years Experience</span>
+                <div className="stat-icon">
+                  <TrendingUp size={24} />
+                </div>
+                <div className="stat-content">
+                  <span className="stat-number">8+</span>
+                  <span className="stat-label">Years Experience</span>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="hero-visual">
-            <div className="hero-cards">
-              <div className="hero-card floating-card-1">
-                <div className="card-icon">
-                  <Code className="hero-icon" />
+            <div className="tech-stack">
+              <div className="tech-item tech-item-1">
+                <div className="tech-icon">
+                  <Code size={32} />
                 </div>
-                <span>Freelancing</span>
-                <div className="card-glow"></div>
+                <span>React</span>
+                <div className="tech-glow"></div>
               </div>
-              <div className="hero-card floating-card-2">
-                <div className="card-icon">
-                  <Users className="hero-icon" />
+              <div className="tech-item tech-item-2">
+                <div className="tech-icon">
+                  <Database size={32} />
                 </div>
-                <span>Mentorship</span>
-                <div className="card-glow"></div>
+                <span>Node.js</span>
+                <div className="tech-glow"></div>
               </div>
-              <div className="hero-card floating-card-3">
-                <div className="card-icon">
-                  <MessageCircle className="hero-icon" />
+              <div className="tech-item tech-item-3">
+                <div className="tech-icon">
+                  <Cpu size={32} />
                 </div>
-                <span>Mock Interviews</span>
-                <div className="card-glow"></div>
+                <span>Python</span>
+                <div className="tech-glow"></div>
               </div>
-              <div className="hero-card floating-card-4">
-                <div className="card-icon">
-                  <BookOpen className="hero-icon" />
+              <div className="tech-item tech-item-4">
+                <div className="tech-icon">
+                  <GitBranch size={32} />
                 </div>
-                <span>Learning</span>
-                <div className="card-glow"></div>
+                <span>DevOps</span>
+                <div className="tech-glow"></div>
+              </div>
+              <div className="tech-item tech-item-5">
+                <div className="tech-icon">
+                  <Brain size={32} />
+                </div>
+                <span>AI/ML</span>
+                <div className="tech-glow"></div>
+              </div>
+              <div className="tech-item tech-item-6">
+                <div className="tech-icon">
+                  <Terminal size={32} />
+                </div>
+                <span>Cloud</span>
+                <div className="tech-glow"></div>
+              </div>
+            </div>
+
+            <div className="floating-elements">
+              <div className="floating-code">
+                <pre>{`const mentor = {
+  name: "Sumukh",
+  skills: ["React", "Node.js", "Python"],
+  passion: "Teaching",
+  motto: "Code with Purpose"
+};`}</pre>
               </div>
             </div>
           </div>
@@ -125,7 +205,22 @@ const Hero = () => {
           display: flex;
           align-items: center;
           overflow: hidden;
-          background: var(--background-dark);
+          background: #0a0a0a;
+          background-image: radial-gradient(
+              circle at 20% 80%,
+              rgba(120, 119, 198, 0.3) 0%,
+              transparent 50%
+            ),
+            radial-gradient(
+              circle at 80% 20%,
+              rgba(255, 119, 198, 0.3) 0%,
+              transparent 50%
+            ),
+            radial-gradient(
+              circle at 40% 40%,
+              rgba(120, 219, 255, 0.2) 0%,
+              transparent 50%
+            );
         }
 
         .hero-background {
@@ -143,54 +238,91 @@ const Hero = () => {
           left: 0;
           right: 0;
           bottom: 0;
-          background: radial-gradient(
-              ellipse at top,
-              rgba(99, 102, 241, 0.3) 0%,
-              transparent 50%
-            ),
-            radial-gradient(
-              ellipse at bottom,
-              rgba(139, 92, 246, 0.3) 0%,
-              transparent 50%
-            ),
-            radial-gradient(
-              ellipse at right,
-              rgba(236, 72, 153, 0.2) 0%,
-              transparent 50%
-            );
+          background: linear-gradient(
+            135deg,
+            rgba(99, 102, 241, 0.1) 0%,
+            rgba(139, 92, 246, 0.1) 25%,
+            rgba(236, 72, 153, 0.1) 50%,
+            rgba(0, 245, 255, 0.1) 75%,
+            rgba(99, 102, 241, 0.1) 100%
+          );
+          animation: gradientShift 10s ease-in-out infinite;
         }
 
-        .hero-particles {
+        .hero-grid {
           position: absolute;
           top: 0;
           left: 0;
           right: 0;
           bottom: 0;
-          background-image: radial-gradient(
-              circle at 20% 80%,
-              rgba(255, 0, 110, 0.3) 0%,
-              transparent 50%
+          background-image: linear-gradient(
+              rgba(255, 255, 255, 0.03) 1px,
+              transparent 1px
             ),
-            radial-gradient(
-              circle at 80% 20%,
-              rgba(0, 245, 255, 0.3) 0%,
-              transparent 50%
-            ),
-            radial-gradient(
-              circle at 40% 40%,
-              rgba(131, 56, 236, 0.2) 0%,
-              transparent 50%
+            linear-gradient(
+              90deg,
+              rgba(255, 255, 255, 0.03) 1px,
+              transparent 1px
             );
-          animation: particleFloat 20s ease-in-out infinite;
+          background-size: 50px 50px;
+          animation: gridMove 20s linear infinite;
         }
 
-        @keyframes particleFloat {
+        .hero-code-lines {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: linear-gradient(
+              45deg,
+              transparent 48%,
+              rgba(0, 255, 255, 0.1) 49%,
+              rgba(0, 255, 255, 0.1) 51%,
+              transparent 52%
+            ),
+            linear-gradient(
+              -45deg,
+              transparent 48%,
+              rgba(255, 0, 255, 0.1) 49%,
+              rgba(255, 0, 255, 0.1) 51%,
+              transparent 52%
+            );
+          background-size: 100px 100px;
+          animation: codeLines 15s linear infinite;
+        }
+
+        @keyframes gradientShift {
           0%,
           100% {
-            transform: translateY(0px) rotate(0deg);
+            transform: translateX(0) translateY(0);
+          }
+          25% {
+            transform: translateX(-10px) translateY(-10px);
           }
           50% {
-            transform: translateY(-20px) rotate(180deg);
+            transform: translateX(10px) translateY(-5px);
+          }
+          75% {
+            transform: translateX(-5px) translateY(10px);
+          }
+        }
+
+        @keyframes gridMove {
+          0% {
+            transform: translate(0, 0);
+          }
+          100% {
+            transform: translate(50px, 50px);
+          }
+        }
+
+        @keyframes codeLines {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(100px);
           }
         }
 
@@ -208,15 +340,27 @@ const Hero = () => {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          background: var(--glass-bg);
+          background: rgba(0, 255, 255, 0.1);
           backdrop-filter: blur(20px);
-          border: 1px solid var(--glass-border);
+          border: 1px solid rgba(0, 255, 255, 0.3);
           border-radius: 2rem;
           padding: 0.5rem 1rem;
           font-size: 0.875rem;
           font-weight: 600;
-          color: var(--accent-color);
+          color: #00ffff;
           margin-bottom: 1.5rem;
+          font-family: "Courier New", monospace;
+          animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+          0%,
+          100% {
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+          }
         }
 
         .hero-title {
@@ -227,19 +371,64 @@ const Hero = () => {
           color: white;
         }
 
-        .gradient-text {
-          background: var(--gradient-primary);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+        .hero-greeting {
+          color: #00ffff;
+          font-family: "Courier New", monospace;
+          font-size: 1.5rem;
+          display: block;
+          margin-bottom: 0.5rem;
         }
 
-        .neon-text {
-          background: var(--gradient-neon);
+        .hero-name {
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+
+        .gradient-text {
+          background: linear-gradient(135deg, #00ffff, #ff00ff, #ffff00);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
-          text-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
+          animation: textGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+          0%,
+          100% {
+            filter: brightness(1);
+          }
+          50% {
+            filter: brightness(1.5);
+          }
+        }
+
+        .typing-container {
+          display: inline-block;
+          position: relative;
+        }
+
+        .typing-text {
+          color: #ff00ff;
+          font-family: "Courier New", monospace;
+          font-size: 2rem;
+          font-weight: 700;
+        }
+
+        .typing-cursor {
+          color: #00ffff;
+          animation: blink 1s infinite;
+          font-size: 2rem;
+        }
+
+        @keyframes blink {
+          0%,
+          50% {
+            opacity: 1;
+          }
+          51%,
+          100% {
+            opacity: 0;
+          }
         }
 
         .hero-description {
@@ -249,11 +438,55 @@ const Hero = () => {
           color: rgba(255, 255, 255, 0.8);
         }
 
+        .highlight {
+          color: #00ffff;
+          font-weight: 600;
+        }
+
         .hero-buttons {
           display: flex;
           gap: 1rem;
           margin-bottom: 3rem;
           flex-wrap: wrap;
+        }
+
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 1rem 2rem;
+          font-size: 1rem;
+          font-weight: 700;
+          text-decoration: none;
+          border: none;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .btn-primary {
+          background: linear-gradient(135deg, #00ffff, #ff00ff);
+          color: #000;
+          box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0, 255, 255, 0.5);
+        }
+
+        .btn-secondary {
+          background: rgba(255, 255, 255, 0.1);
+          color: #00ffff;
+          border: 2px solid #00ffff;
+          backdrop-filter: blur(20px);
+        }
+
+        .btn-secondary:hover {
+          background: rgba(0, 255, 255, 0.1);
+          transform: translateY(-2px);
         }
 
         .hero-stats {
@@ -263,14 +496,30 @@ const Hero = () => {
 
         .stat {
           display: flex;
-          flex-direction: column;
           align-items: center;
+          gap: 1rem;
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 1rem;
+          padding: 1rem;
+          transition: all 0.3s ease;
+        }
+
+        .stat:hover {
+          transform: translateY(-5px);
+          border-color: #00ffff;
+          box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .stat-icon {
+          color: #00ffff;
         }
 
         .stat-number {
-          font-size: 2rem;
+          font-size: 1.5rem;
           font-weight: 900;
-          color: var(--accent-color);
+          color: #ff00ff;
           line-height: 1;
         }
 
@@ -284,90 +533,81 @@ const Hero = () => {
           display: flex;
           justify-content: center;
           align-items: center;
+          position: relative;
         }
 
-        .hero-cards {
+        .tech-stack {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(3, 1fr);
           gap: 1.5rem;
-          max-width: 400px;
+          max-width: 500px;
         }
 
-        .hero-card {
-          background: var(--glass-bg);
+        .tech-item {
+          background: rgba(255, 255, 255, 0.05);
           backdrop-filter: blur(20px);
-          border: 1px solid var(--glass-border);
-          border-radius: 1.5rem;
-          padding: 2rem;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 1rem;
+          padding: 1.5rem;
           text-align: center;
           position: relative;
           overflow: hidden;
           transition: all 0.3s ease;
+          cursor: pointer;
         }
 
-        .card-icon {
-          width: 4rem;
-          height: 4rem;
-          background: var(--gradient-primary);
-          border-radius: 1rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto 1rem;
-          position: relative;
-          z-index: 2;
+        .tech-item:hover {
+          transform: translateY(-10px) scale(1.05);
+          border-color: #00ffff;
+          box-shadow: 0 20px 40px rgba(0, 255, 255, 0.3);
         }
 
-        .hero-icon {
-          width: 2rem;
-          height: 2rem;
-          color: white;
+        .tech-icon {
+          color: #00ffff;
+          margin-bottom: 0.5rem;
         }
 
-        .hero-card span {
+        .tech-item span {
           font-weight: 700;
-          font-size: 1.1rem;
+          font-size: 0.9rem;
           color: white;
-          position: relative;
-          z-index: 2;
+          font-family: "Courier New", monospace;
         }
 
-        .card-glow {
+        .tech-glow {
           position: absolute;
           top: -50%;
           left: -50%;
           width: 200%;
           height: 200%;
-          background: var(--gradient-neon);
+          background: linear-gradient(45deg, #00ffff, #ff00ff);
           opacity: 0;
           transition: opacity 0.3s ease;
           border-radius: 50%;
           filter: blur(20px);
         }
 
-        .hero-card:hover .card-glow {
-          opacity: 0.1;
+        .tech-item:hover .tech-glow {
+          opacity: 0.2;
         }
 
-        .hero-card:hover {
-          transform: translateY(-10px) scale(1.05);
-          border-color: var(--primary-color);
-        }
-
-        .floating-card-1 {
+        .tech-item-1 {
           animation: float 6s ease-in-out infinite;
         }
-
-        .floating-card-2 {
+        .tech-item-2 {
+          animation: float 6s ease-in-out infinite -1s;
+        }
+        .tech-item-3 {
           animation: float 6s ease-in-out infinite -2s;
         }
-
-        .floating-card-3 {
+        .tech-item-4 {
+          animation: float 6s ease-in-out infinite -3s;
+        }
+        .tech-item-5 {
           animation: float 6s ease-in-out infinite -4s;
         }
-
-        .floating-card-4 {
-          animation: float 6s ease-in-out infinite -6s;
+        .tech-item-6 {
+          animation: float 6s ease-in-out infinite -5s;
         }
 
         @keyframes float {
@@ -377,6 +617,34 @@ const Hero = () => {
           }
           50% {
             transform: translateY(-20px);
+          }
+        }
+
+        .floating-elements {
+          position: absolute;
+          top: 50%;
+          right: -100px;
+          transform: translateY(-50%);
+        }
+
+        .floating-code {
+          background: rgba(0, 0, 0, 0.8);
+          border: 1px solid #00ffff;
+          border-radius: 0.5rem;
+          padding: 1rem;
+          font-family: "Courier New", monospace;
+          font-size: 0.8rem;
+          color: #00ffff;
+          animation: codeFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes codeFloat {
+          0%,
+          100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-10px) rotate(2deg);
           }
         }
 
@@ -396,6 +664,14 @@ const Hero = () => {
             font-size: 2.5rem;
           }
 
+          .hero-greeting {
+            font-size: 1rem;
+          }
+
+          .typing-text {
+            font-size: 1.5rem;
+          }
+
           .hero-description {
             font-size: 1.1rem;
           }
@@ -405,26 +681,21 @@ const Hero = () => {
           }
 
           .hero-stats {
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
           }
 
-          .hero-cards {
-            grid-template-columns: 1fr 1fr;
+          .tech-stack {
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
           }
 
-          .hero-card {
-            padding: 1.5rem;
+          .tech-item {
+            padding: 1rem;
           }
 
-          .card-icon {
-            width: 3rem;
-            height: 3rem;
-          }
-
-          .hero-icon {
-            width: 1.5rem;
-            height: 1.5rem;
+          .floating-elements {
+            display: none;
           }
         }
       `}</style>

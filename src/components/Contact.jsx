@@ -1,5 +1,22 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  Terminal,
+  Code2,
+  Rocket,
+  Zap,
+  MessageCircle,
+  Clock,
+  Shield,
+  User,
+  AtSign,
+  Hash,
+  FileText,
+} from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,21 +26,22 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
   const handleChange = (e) => {
+    setIsTyping(true);
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setTimeout(() => setIsTyping(false), 1000);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
     console.log("Form submitted:", formData);
     setIsSubmitted(true);
 
-    // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
@@ -41,26 +59,49 @@ const Contact = () => {
       label: "Email",
       value: "sumukh@example.com",
       link: "mailto:sumukh@example.com",
+      color: "cyan",
     },
     {
       icon: Phone,
       label: "Phone",
       value: "+1 (555) 123-4567",
       link: "tel:+15551234567",
+      color: "purple",
     },
     {
       icon: MapPin,
       label: "Location",
       value: "San Francisco, CA",
       link: null,
+      color: "pink",
     },
   ];
 
+  const services = [
+    { value: "freelancing", label: "Freelancing Opportunities", icon: Code2 },
+    { value: "mentorship", label: "Technical Mentorship", icon: User },
+    { value: "mock-interviews", label: "Mock Interviews", icon: MessageCircle },
+    { value: "learning-support", label: "Learning Support", icon: FileText },
+    { value: "other", label: "Other", icon: Hash },
+  ];
+
   return (
-    <section id="contact" className="section section-light">
+    <section id="contact" className="contact-section">
+      <div className="contact-background">
+        <div className="contact-grid-bg"></div>
+        <div className="contact-particles"></div>
+        <div className="contact-circuit"></div>
+      </div>
+
       <div className="container">
         <div className="section-header section-center">
-          <h2>Get In Touch</h2>
+          <div className="section-badge">
+            <Terminal size={16} />
+            <span>contact.exe</span>
+          </div>
+          <h2>
+            <span className="gradient-text">Contact</span> The Developer
+          </h2>
           <p className="section-subtitle">
             Ready to start your journey? Let's discuss how I can help you
             achieve your goals.
@@ -69,19 +110,24 @@ const Contact = () => {
 
         <div className="contact-content">
           <div className="contact-info">
-            <h3>Let's Connect! 🤝</h3>
-            <p>
-              I'm always excited to work with passionate developers and
-              students. Whether you're looking for mentorship, freelance
-              opportunities, or interview preparation, I'm here to help you
-              level up! 🚀
-            </p>
+            <div className="contact-intro">
+              <h3>Let's Connect! 🤝</h3>
+              <p>
+                I'm always excited to work with passionate developers and
+                students. Whether you're looking for mentorship, freelance
+                opportunities, or interview preparation, I'm here to help you
+                level up! 🚀
+              </p>
+            </div>
 
             <div className="contact-details">
               {contactInfo.map((info, index) => (
-                <div key={index} className="contact-item">
+                <div
+                  key={index}
+                  className={`contact-item contact-${info.color}`}
+                >
                   <div className="contact-icon">
-                    <info.icon size={20} />
+                    <info.icon size={24} />
                   </div>
                   <div className="contact-text">
                     <span className="contact-label">{info.label}</span>
@@ -93,12 +139,16 @@ const Contact = () => {
                       <span className="contact-value">{info.value}</span>
                     )}
                   </div>
+                  <div className="contact-glow"></div>
                 </div>
               ))}
             </div>
 
             <div className="contact-note">
-              <h4>⚡ Quick Response</h4>
+              <div className="note-header">
+                <Zap size={20} />
+                <h4>Quick Response</h4>
+              </div>
               <p>
                 I typically respond to all inquiries within 24 hours. For urgent
                 matters, please call directly!
@@ -109,65 +159,99 @@ const Contact = () => {
           <div className="contact-form-container">
             {isSubmitted ? (
               <div className="form-success">
-                <CheckCircle size={48} />
+                <div className="success-icon">
+                  <CheckCircle size={48} />
+                </div>
                 <h3>Message Sent!</h3>
                 <p>
                   Thank you for reaching out. I'll get back to you within 24
                   hours.
                 </p>
+                <div className="success-animation">
+                  <div className="success-particle"></div>
+                  <div className="success-particle"></div>
+                  <div className="success-particle"></div>
+                </div>
               </div>
             ) : (
               <form className="contact-form" onSubmit={handleSubmit}>
-                <h3>Drop Me a Line! 💬</h3>
+                <div className="form-header">
+                  <h3>Drop Me a Line! 💬</h3>
+                  <div className="form-status">
+                    {isTyping && (
+                      <div className="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    )}
+                  </div>
+                </div>
 
-                <div className="form-group">
-                  <label htmlFor="name">Full Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Your full name"
-                  />
+                <div className="form-grid">
+                  <div className="form-group">
+                    <label htmlFor="name">
+                      <User size={16} />
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="email">
+                      <AtSign size={16} />
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email Address</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="your.email@example.com"
-                  />
+                  <label htmlFor="service">
+                    <Hash size={16} />
+                    Service Interested In
+                  </label>
+                  <div className="service-selector">
+                    {services.map((service) => (
+                      <label key={service.value} className="service-option">
+                        <input
+                          type="radio"
+                          name="service"
+                          value={service.value}
+                          checked={formData.service === service.value}
+                          onChange={handleChange}
+                          required
+                        />
+                        <div className="service-card">
+                          <service.icon size={20} />
+                          <span>{service.label}</span>
+                        </div>
+                      </label>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="service">Service Interested In</label>
-                  <select
-                    id="service"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Select a service</option>
-                    <option value="freelancing">
-                      Freelancing Opportunities
-                    </option>
-                    <option value="mentorship">Technical Mentorship</option>
-                    <option value="mock-interviews">Mock Interviews</option>
-                    <option value="learning-support">Learning Support</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="message">Message</label>
+                  <label htmlFor="message">
+                    <FileText size={16} />
+                    Message
+                  </label>
                   <textarea
                     id="message"
                     name="message"
@@ -179,9 +263,10 @@ const Contact = () => {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-large">
+                <button type="submit" className="form-submit">
+                  <Rocket size={20} />
+                  <span>Send Message</span>
                   <Send size={20} />
-                  Send Message 🚀
                 </button>
               </form>
             )}

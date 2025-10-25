@@ -20,8 +20,18 @@ import {
 
 const Profile = () => {
   const projects = [
-    { name: "Honest Heart", icon: Home, color: "#ff6b6b" },
-    { name: "AllAboutAviation", icon: Calculator, color: "#4ecdc4" },
+    {
+      name: "Honest Heart",
+      icon: Home,
+      color: "#ff6b6b",
+      url: "https://honestheart.sumukhbhandarkar.com",
+    },
+    {
+      name: "Aviation BOM",
+      icon: Bus,
+      color: "#4ecdc4",
+      url: "https://aviation.sumukhbhandarkar.com/bom",
+    },
   ];
 
   const socialLinks = [
@@ -84,7 +94,13 @@ const Profile = () => {
           <h2>PROJECTS</h2>
           <div className="projects-grid">
             {projects.map((project, index) => (
-              <div key={index} className="project-item">
+              <a
+                key={index}
+                href={project.url || "#"}
+                className="project-item"
+                target={project.url ? "_blank" : "_self"}
+                rel={project.url ? "noopener noreferrer" : ""}
+              >
                 <div
                   className="project-icon"
                   style={{ backgroundColor: project.color }}
@@ -93,7 +109,7 @@ const Profile = () => {
                 </div>
                 <span className="project-name">{project.name}</span>
                 <ArrowRight size={16} className="project-arrow" />
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -114,22 +130,24 @@ const Profile = () => {
           background: #000;
           color: #fff;
           font-family: "Courier New", monospace;
-          padding: 2rem;
+          padding: 3rem 2rem;
           display: flex;
           justify-content: center;
           align-items: center;
         }
 
         .profile-content {
-          max-width: 600px;
+          max-width: 700px;
           width: 100%;
         }
 
         .profile-header {
           display: flex;
           align-items: center;
-          gap: 1.5rem;
-          margin-bottom: 3rem;
+          gap: 2rem;
+          margin-bottom: 4rem;
+          padding-bottom: 2rem;
+          border-bottom: 1px solid #333;
         }
 
         .profile-picture {
@@ -137,94 +155,117 @@ const Profile = () => {
         }
 
         .avatar-placeholder {
-          width: 80px;
-          height: 80px;
+          width: 100px;
+          height: 100px;
           border-radius: 50%;
-          background: #333;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 1.5rem;
+          font-size: 2rem;
           font-weight: bold;
           color: #fff;
+          box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
         }
 
         .profile-info h1 {
-          font-size: 1.5rem;
+          font-size: 2rem;
           font-weight: normal;
           margin: 0 0 0.5rem 0;
           color: #fff;
+          line-height: 1.2;
         }
 
         .profile-info p {
-          font-size: 1rem;
+          font-size: 1.1rem;
           margin: 0;
-          color: #ccc;
+          color: #aaa;
         }
 
         .section {
-          margin-bottom: 2.5rem;
+          margin-bottom: 3rem;
         }
 
         .section h2 {
-          font-size: 1rem;
+          font-size: 1.1rem;
           font-weight: bold;
-          margin-bottom: 1rem;
+          margin-bottom: 1.5rem;
           color: #fff;
           text-transform: uppercase;
-          letter-spacing: 1px;
+          letter-spacing: 2px;
+          position: relative;
+          padding-left: 1rem;
+        }
+
+        .section h2::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 4px;
+          height: 20px;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .current-role {
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 1.5rem;
           flex-wrap: wrap;
+          padding: 1.5rem;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .role-info {
           display: flex;
           flex-direction: column;
-          gap: 0.25rem;
+          gap: 0.5rem;
         }
 
         .role-title {
-          font-size: 1rem;
+          font-size: 1.1rem;
           color: #fff;
+          font-weight: 500;
         }
 
         .role-dates {
           font-size: 0.9rem;
-          color: #ccc;
+          color: #aaa;
         }
 
         .role-company {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.75rem;
         }
 
         .company-logo {
-          background: #ff6b6b;
+          background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
           color: #fff;
-          padding: 0.25rem 0.5rem;
-          border-radius: 3px;
+          padding: 0.5rem 0.75rem;
+          border-radius: 6px;
           font-size: 0.8rem;
           font-weight: bold;
+          text-transform: uppercase;
         }
 
         .company-name {
-          font-size: 0.9rem;
+          font-size: 1rem;
           color: #ccc;
+          font-weight: 500;
         }
 
         .previous-roles {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          color: #ccc;
+          color: #aaa;
           font-size: 0.9rem;
           cursor: pointer;
+          transition: color 0.3s ease;
         }
 
         .previous-roles:hover {
@@ -232,46 +273,60 @@ const Profile = () => {
         }
 
         .section p {
-          font-size: 1rem;
-          line-height: 1.6;
+          font-size: 1.1rem;
+          line-height: 1.8;
           color: #ccc;
           margin: 0;
+          padding: 1.5rem;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 8px;
+          border-left: 3px solid #667eea;
         }
 
         .projects-grid {
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
+          gap: 1rem;
         }
 
         .project-item {
           display: flex;
           align-items: center;
-          gap: 1rem;
-          padding: 0.5rem 0;
+          gap: 1.25rem;
+          padding: 1rem 1.5rem;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
           cursor: pointer;
-          transition: color 0.2s ease;
+          transition: all 0.3s ease;
+          text-decoration: none;
+          color: inherit;
         }
 
         .project-item:hover {
-          color: #fff;
+          background: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.2);
+          transform: translateX(8px);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .project-icon {
-          width: 32px;
-          height: 32px;
-          border-radius: 6px;
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
           display: flex;
           align-items: center;
           justify-content: center;
           color: #fff;
           flex-shrink: 0;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
 
         .project-name {
           flex: 1;
-          font-size: 1rem;
+          font-size: 1.1rem;
           color: #ccc;
+          font-weight: 500;
         }
 
         .project-item:hover .project-name {
@@ -281,49 +336,100 @@ const Profile = () => {
         .project-arrow {
           color: #666;
           flex-shrink: 0;
+          transition: all 0.3s ease;
         }
 
         .project-item:hover .project-arrow {
           color: #fff;
+          transform: translateX(4px);
         }
 
         .social-links {
           display: flex;
-          gap: 1rem;
-          margin-top: 2rem;
+          gap: 1.5rem;
+          margin-top: 3rem;
           padding-top: 2rem;
           border-top: 1px solid #333;
+          justify-content: center;
         }
 
         .social-link {
           color: #666;
           text-decoration: none;
-          transition: color 0.2s ease;
+          transition: all 0.3s ease;
+          padding: 0.75rem;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-link:hover {
           color: #fff;
+          background: rgba(255, 255, 255, 0.08);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
 
         @media (max-width: 768px) {
           .profile-container {
-            padding: 1rem;
+            padding: 2rem 1rem;
           }
 
           .profile-header {
             flex-direction: column;
             text-align: center;
-            gap: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+          }
+
+          .avatar-placeholder {
+            width: 80px;
+            height: 80px;
+            font-size: 1.5rem;
+          }
+
+          .profile-info h1 {
+            font-size: 1.75rem;
           }
 
           .current-role {
             flex-direction: column;
             align-items: flex-start;
-            gap: 0.5rem;
+            gap: 1rem;
+            text-align: left;
+          }
+
+          .section h2 {
+            font-size: 1rem;
+            letter-spacing: 1px;
+          }
+
+          .section p {
+            font-size: 1rem;
+            padding: 1rem;
+          }
+
+          .project-item {
+            padding: 0.75rem 1rem;
+            gap: 1rem;
+          }
+
+          .project-icon {
+            width: 36px;
+            height: 36px;
+          }
+
+          .project-name {
+            font-size: 1rem;
           }
 
           .social-links {
-            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+          }
+
+          .social-link {
+            padding: 0.5rem;
           }
         }
       `}</style>

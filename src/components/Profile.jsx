@@ -54,13 +54,13 @@ const Profile = () => {
           <div className="current-role">
             <div className="role-info">
               <span className="role-title">
-                Developer - TCS Innovations Lab
+                Senior Software Engineer - Lowe's India
               </span>
               <span className="role-dates">2025 - Present</span>
             </div>
             <div className="role-company">
-              <span className="company-logo">tcs</span>
-              <span className="company-name">TCS</span>
+              <span className="company-logo">lowes</span>
+              <span className="company-name">Lowes</span>
             </div>
             <div className="previous-roles">
               <ArrowRight size={16} />

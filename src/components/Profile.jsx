@@ -16,6 +16,7 @@ import {
   GraduationCap,
   Mic,
   Music,
+  MessageCircle,
 } from "lucide-react";
 
 const Profile = () => {
@@ -35,10 +36,21 @@ const Profile = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: "#", color: "#333" },
-    { icon: Twitter, href: "#", color: "#1da1f2" },
-    { icon: Linkedin, href: "#", color: "#0077b5" },
-    { icon: Send, href: "#", color: "#0088cc" },
+    {
+      icon: Github,
+      href: "https://github.com/sumukhbhandarkar",
+      color: "#333",
+    },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/sumukhbhandarkar",
+      color: "#0077b5",
+    },
+    {
+      icon: MessageCircle,
+      href: "https://wa.me/918867141252",
+      color: "#25D366",
+    },
     { icon: Coffee, href: "#", color: "#6f4e37" },
   ];
 
@@ -60,7 +72,7 @@ const Profile = () => {
 
         {/* Currently Section */}
         <div className="section">
-          <h2>CURRENTLY</h2>
+          <h2>Professional Experience</h2>
           <div className="current-role">
             <div className="role-info">
               <span className="role-title">
@@ -81,11 +93,17 @@ const Profile = () => {
 
         {/* About Section */}
         <div className="section">
-          <h2>ABOUT</h2>
+          <h2>About</h2>
           <p>
-            I am a developer who enjoys creating practical solutions to
-            real-world problems. I am always looking to improve my skills and
-            explore new technologies.
+            As a Senior Software Engineer at Lowe's India, I leverage my
+            expertise in Java, Spring, and Hibernate to develop new features for
+            various modules. I have a strong background in software engineering,
+            having worked as a Software Engineer III at Walmart Global Tech
+            India and an Application Engineer at Oracle. I am passionate about
+            solving complex problems and delivering high-quality solutions using
+            agile development environments and microservice architectures. I am
+            always eager to learn new technologies and enhance my skills to stay
+            ahead in the fast-paced tech industry.
           </p>
         </div>
 
@@ -117,7 +135,13 @@ const Profile = () => {
         {/* Social Links */}
         <div className="social-links">
           {socialLinks.map((social, index) => (
-            <a key={index} href={social.href} className="social-link">
+            <a
+              key={index}
+              href={social.href}
+              className="social-link"
+              target={social.href.startsWith("http") ? "_blank" : "_self"}
+              rel={social.href.startsWith("http") ? "noopener noreferrer" : ""}
+            >
               <social.icon size={20} />
             </a>
           ))}
